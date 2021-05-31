@@ -79,7 +79,7 @@ nav {
 
 /* Content */
 .content {
-  height: calc(100vh - 145px);
+  min-height: calc(100vh - 145px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,14 +88,14 @@ nav {
   background-color: rgb(255, 255, 255);
   min-width: 90vw;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
-  height: calc(calc(100vh - 145px) * 0.9);
+  min-height: calc(calc(100vh - 145px) * 0.9);
   margin: 10px;
 }
 .contentHeader {
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: 25%;
+  min-height: calc(calc(calc(100vh - 145px) * 0.9) * 0.25);
   padding: 0px 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -107,6 +107,7 @@ nav {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  text-align: center;
 }
 .description {
   margin: 0;
@@ -114,15 +115,17 @@ nav {
   margin-bottom: 10px;
 }
 .contentSubsection {
-  width: 50%;
+  width: calc(50% - 40px);
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
 }
 .queriesContainer {
   width: 100%;
   min-height: 75%;
+  min-height: calc(calc(calc(100vh - 145px) * 0.9) * 0.75);
   display: flex;
   flex-direction: row;
 }
@@ -141,6 +144,7 @@ nav {
   justify-content: center;
   flex-direction: column;
   height: calc(100% - 50px);
+  margin-top: 20px;
 }
 .tableRow {
   display: flex;
@@ -208,11 +212,12 @@ nav {
   margin: 20px 0px;
 }
 .a {
-  margin: 0px 20px;
+  margin: 5px 20px;
 }
 .inputTitle {
   font-weight: 600;
   margin: 20px 0px 0px 0px;
+  text-align: center;
 }
 .inputContainer {
   display: flex;
@@ -260,4 +265,30 @@ nav {
 }
 .noInputRequired {
   text-align: center;
+}
+.reminder {
+  margin: -5px 0 0 0;
+  font-size: 12px;
+  color: rgb(100, 100, 100);
+  font-weight: 500;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 800px) {
+  .queriesContainer {
+    flex-direction: column;
+  }
+  .contentSubsection {
+    width: calc(100% - 40px);
+    min-height: 1px;
+  }
+  .contentSubsection1 {
+    border-right: 0px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+@media only screen and (max-width: 450px) {
+  .datesContainer {
+    flex-direction: column;
+  }
 }

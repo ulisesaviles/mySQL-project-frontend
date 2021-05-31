@@ -21,15 +21,24 @@ const App = () => {
   // Const
   const [selectedQueryIndex, setSelectedQueryIndex] = useState(0);
   const [doneQuery, setDoneQuery] = useState(false);
-  const [responseMsg, setResponseMsg] = useState(
-    "Realiza la consulta para obtener un resultado"
-  );
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [searchById, setSearchById] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [queryResponse, setQueryResponse] = useState(sampleResponse);
+  const [responseMsg, setResponseMsg] = useState(
+    "Realiza la consulta para obtener un resultado"
+  );
 
   // Functions
+  const checkStr = (str) => {
+    if (/^[a-zA-Z ]*$/.test(str)) {
+      setInputValue(str);
+    } else {
+      setInputValue(str.substr(0, str.length - 1));
+    }
+  };
+
   const handleChangeQuery = (newIndex) => {
     setResponseMsg("Realiza la consulta para obtener un resultado");
     setSelectedQueryIndex(newIndex);
@@ -39,16 +48,59 @@ const App = () => {
 
   const handleQuery = () => {
     setResponseMsg("Cargando...");
+    let dataToPost = {};
+    // Get input values
+    if (queries[selectedQueryIndex].type === "departments") {
+      dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
+      dataToPost["departmentId"] = searchById ? inputValue : 0;
+    } else if (queries[selectedQueryIndex].type === "dates") {
+      let start = new Date(startDate);
+      let end = new Date(endDate);
+      dataToPost[
+        "startDate"
+      ] = `${start.getFullYear()}-${start.getMonth()}-${start.getDate()}`;
+      dataToPost[
+        "endDate"
+      ] = `${end.getFullYear()}-${end.getMonth()}-${end.getDate()}`;
+    } else if (queries[selectedQueryIndex].type === "both") {
+      dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
+      dataToPost["departmentId"] = searchById ? inputValue : 0;
+      let start = new Date(startDate);
+      let end = new Date(endDate);
+      dataToPost["startDate"] = `${start.getFullYear()}-${
+        start.getMonth() + 1
+      }-${start.getDate()}`;
+      dataToPost["endDate"] = `${end.getFullYear()}-${
+        end.getMonth() + 1
+      }-${end.getDate()}`;
+    }
+    console.log(dataToPost);
     // Make query
-    setTimeout(() => {
-      setDoneQuery(true);
-    }, 3000);
+    axios({
+      method: "post",
+      url: `localhost:3000/api/query${selectedQueryIndex + 1}`,
+      data: {
+        data: dataToPost,
+      },
+    })
+      .then((response) => {
+        if (response.data !== []) {
+          setQueryResponse(response.data);
+          setDoneQuery(true);
+        } else {
+          setResponseMsg("Ninguna tabla coincide con el input dado");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        setResponseMsg("Error de conexión");
+      });
   };
 
   const onlyuNumbers = (inputValue) => {
-    const re = /^[0-9\b]+$/;
+    const re = /^[1-7\b]+$/;
     if (inputValue === "" || re.test(inputValue)) {
-      setInputValue(inputValue);
+      setInputValue(inputValue.charAt(inputValue.length - 1));
     }
   };
 
@@ -148,7 +200,7 @@ const App = () => {
                         if (searchById) {
                           onlyuNumbers(value.target.value);
                         } else {
-                          setInputValue(value.target.value);
+                          checkStr(value.target.value);
                         }
                       }}
                       placeholder={`Ingresa el ${
@@ -158,6 +210,9 @@ const App = () => {
                       id="input"
                       value={inputValue}
                     />
+                    <p className="reminder">
+                      (Recuerda sólo ingresar letras sin acentos y espacios)
+                    </p>
                   </div>
                 ) : (
                   <></>
@@ -185,8 +240,8 @@ const App = () => {
               <div className="tableContainer">
                 {doneQuery ? (
                   <Table
-                    headers={Object.keys(sampleResponse[0])}
-                    data={sampleResponse}
+                    headers={Object.keys(queryResponse[0])}
+                    data={queryResponse}
                   ></Table>
                 ) : (
                   <p>{responseMsg}</p>
