@@ -31,7 +31,7 @@ export default [
   },
   {
     //6
-    type: "departments",
+    type: "both",
     description:
       "Mostrar las ganacias obtenidas en un rango de fechas especifico en base a un despartamento en particular.",
   },

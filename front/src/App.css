@@ -87,14 +87,18 @@ nav {
 }
 .contentContainer {
   background-color: rgb(255, 255, 255);
-  width: 90vw;
+  min-width: 90vw;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
   height: calc(calc(100vh - 145px) * 0.9);
+  margin: 10px;
 }
 .contentHeader {
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-height: 25%;
+  padding: 0px 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
 }
 .contentTitle {
   margin: 10px 0;
@@ -107,4 +111,157 @@ nav {
 }
 .description {
   margin: 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.contentSubsection {
+  width: 50%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.queriesContainer {
+  width: 100%;
+  min-height: 75%;
+  display: flex;
+  flex-direction: row;
+}
+.contentSubsection1 {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+}
+.subContainerTitle {
+  margin: 0;
+  font-size: 30px;
+}
+/* .queryTitle {
+  margin-bottom: 10px;
+} */
+
+/* Table */
+.tableContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: calc(100% - 50px);
+}
+.tableRow {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+.cell {
+  width: 110px;
+  /* border: 1px solid rgb(150, 150, 150); */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cellText {
+  margin: 0;
+  text-align: center;
+}
+.cellHeader {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  font-weight: 600;
+}
+.cell1 {
+  background-color: rgb(230, 230, 230);
+}
+
+/* Inputs */
+.submitBtn {
+  height: 40px;
+  font-size: 20px;
+  width: 200px;
+  border-radius: 100px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  font-weight: 700;
+  transition-property: all;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 20px;
+}
+.submitBtn:hover {
+  transform: translateY(-5px);
+  transform: scale(1.05);
+}
+.dateInput {
+  background-color: rgb(230, 230, 230);
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 100px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+}
+.datesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 20px 0px;
+}
+.a {
+  margin: 0px 20px;
+}
+.inputTitle {
+  font-weight: 600;
+  margin: 20px 0px 0px 0px;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.toggleContainer {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 100px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+}
+.toggleItem {
+  margin: 0px 3px;
+  height: 24px;
+  border-radius: 100px;
+  padding: 0px 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0);
+  transition-property: all;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  cursor: pointer;
+}
+.toggleItemSelected {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+}
+.searchBy {
+  margin: 10px 0px 5px 0px;
+}
+.input {
+  height: 30px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 100px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+  width: 300px;
+  padding: 0px 10px;
+  border: 0;
+  margin: 10px 0px;
+}
+.noInputRequired {
+  text-align: center;
 }
