@@ -84,12 +84,8 @@ const App = () => {
       },
     })
       .then((response) => {
-        if (response.data !== []) {
-          setQueryResponse(response.data);
-          setDoneQuery(true);
-        } else {
-          setResponseMsg("Ninguna tabla coincide con el input dado");
-        }
+        setQueryResponse(response.data);
+        setDoneQuery(true);
       })
       .catch((e) => {
         console.log(e);
@@ -210,9 +206,15 @@ const App = () => {
                       id="input"
                       value={inputValue}
                     />
-                    <p className="reminder">
-                      (Recuerda sólo ingresar letras sin acentos y espacios)
-                    </p>
+                    {searchById ? (
+                      <p className="reminder">
+                        (Recuerda sólo ingresar un dígito del 1 al 7)
+                      </p>
+                    ) : (
+                      <p className="reminder">
+                        (Recuerda sólo ingresar letras sin acentos y espacios)
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <></>
@@ -240,8 +242,8 @@ const App = () => {
               <div className="tableContainer">
                 {doneQuery ? (
                   <Table
-                    headers={Object.keys(queryResponse[0])}
-                    data={queryResponse}
+                    headers={queryResponse.columns}
+                    data={queryResponse.rows}
                   ></Table>
                 ) : (
                   <p>{responseMsg}</p>

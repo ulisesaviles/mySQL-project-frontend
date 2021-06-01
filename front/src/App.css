@@ -115,22 +115,21 @@ nav {
   margin-bottom: 10px;
 }
 .contentSubsection {
-  width: calc(50% - 40px);
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
+  width: calc(100% - 40px);
 }
 .queriesContainer {
   width: 100%;
   min-height: 75%;
   min-height: calc(calc(calc(100vh - 145px) * 0.9) * 0.75);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .contentSubsection1 {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .subContainerTitle {
   margin: 0;
@@ -152,7 +151,7 @@ nav {
   margin: 0;
 }
 .cell {
-  width: 110px;
+  width: 150px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
   margin: 1px;
   display: flex;
@@ -160,6 +159,7 @@ nav {
   align-items: center;
 }
 .cellText {
+  font-size: 14px;
   margin: 0;
   text-align: center;
 }
@@ -274,19 +274,6 @@ nav {
 }
 
 /* Responsiveness */
-@media only screen and (max-width: 800px) {
-  .queriesContainer {
-    flex-direction: column;
-  }
-  .contentSubsection {
-    width: calc(100% - 40px);
-    min-height: 1px;
-  }
-  .contentSubsection1 {
-    border-right: 0px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-}
 @media only screen and (max-width: 450px) {
   .datesContainer {
     flex-direction: column;
