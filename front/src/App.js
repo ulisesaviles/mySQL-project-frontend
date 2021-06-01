@@ -65,10 +65,10 @@ const App = () => {
       let end = new Date(endDate);
       dataToPost["startDate"] = `${start.getFullYear()}-${
         start.getMonth() < 10 ? `0${start.getMonth()}` : start.getMonth()
-      }-${start.getMonth() < 10 ? `0${start.getDate()}` : start.getDate()}`;
+      }-${start.getDate() < 10 ? `0${start.getDate()}` : start.getDate()}`;
       dataToPost["endDate"] = `${end.getFullYear()}-${
         end.getMonth() < 10 ? `0${end.getMonth()}` : end.getMonth()
-      }-${end.getMonth() < 10 ? `0${end.getDate()}` : end.getDate()}`;
+      }-${end.getDate() < 10 ? `0${end.getDate()}` : end.getDate()}`;
     }
     console.log(dataToPost);
     // Make query
