@@ -13,7 +13,7 @@ export default [
   },
   {
     //3
-    type: "departments",
+    type: null,
     description:
       "Mostrar la informacion del inventario de refacciones que tiene cada producto registrado.",
   },
