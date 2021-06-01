@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mySQL-project-frontend/static/css/main.a12c24c2.chunk.css",
-    "main.js": "/mySQL-project-frontend/static/js/main.afe76efe.chunk.js",
-    "main.js.map": "/mySQL-project-frontend/static/js/main.afe76efe.chunk.js.map",
+    "main.js": "/mySQL-project-frontend/static/js/main.56967cf0.chunk.js",
+    "main.js.map": "/mySQL-project-frontend/static/js/main.56967cf0.chunk.js.map",
     "runtime-main.js": "/mySQL-project-frontend/static/js/runtime-main.1d824a73.js",
     "runtime-main.js.map": "/mySQL-project-frontend/static/js/runtime-main.1d824a73.js.map",
     "static/css/2.6df8da87.chunk.css": "/mySQL-project-frontend/static/css/2.6df8da87.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.6df8da87.chunk.css",
     "static/js/2.70bbd146.chunk.js",
     "static/css/main.a12c24c2.chunk.css",
-    "static/js/main.afe76efe.chunk.js"
+    "static/js/main.56967cf0.chunk.js"
   ]
 }
