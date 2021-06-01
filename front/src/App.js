@@ -64,10 +64,12 @@ const App = () => {
       let start = new Date(startDate);
       let end = new Date(endDate);
       dataToPost["startDate"] = `${start.getFullYear()}-${
-        start.getMonth() < 10 ? `0${start.getMonth()}` : start.getMonth()
+        start.getMonth() + 1 < 10
+          ? `0${start.getMonth() + 1}`
+          : start.getMonth() + 1
       }-${start.getDate() < 10 ? `0${start.getDate()}` : start.getDate()}`;
       dataToPost["endDate"] = `${end.getFullYear()}-${
-        end.getMonth() < 10 ? `0${end.getMonth()}` : end.getMonth()
+        end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1
       }-${end.getDate() < 10 ? `0${end.getDate()}` : end.getDate()}`;
     }
     console.log(dataToPost);
