@@ -50,29 +50,25 @@ const App = () => {
     setResponseMsg("Cargando...");
     let dataToPost = {};
     // Get input values
-    if (queries[selectedQueryIndex].type === "departments") {
+    if (
+      queries[selectedQueryIndex].type === "departments" ||
+      queries[selectedQueryIndex].type === "both"
+    ) {
       dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
       dataToPost["departmentId"] = searchById ? inputValue : 0;
-    } else if (queries[selectedQueryIndex].type === "dates") {
-      let start = new Date(startDate);
-      let end = new Date(endDate);
-      dataToPost[
-        "startDate"
-      ] = `${start.getFullYear()}-${start.getMonth()}-${start.getDate()}`;
-      dataToPost[
-        "endDate"
-      ] = `${end.getFullYear()}-${end.getMonth()}-${end.getDate()}`;
-    } else if (queries[selectedQueryIndex].type === "both") {
-      dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
-      dataToPost["departmentId"] = searchById ? inputValue : 0;
+    }
+    if (
+      queries[selectedQueryIndex].type === "dates" ||
+      queries[selectedQueryIndex].type === "both"
+    ) {
       let start = new Date(startDate);
       let end = new Date(endDate);
       dataToPost["startDate"] = `${start.getFullYear()}-${
-        start.getMonth() + 1
-      }-${start.getDate()}`;
+        start.getMonth() < 10 ? `0${start.getMonth()}` : start.getMonth()
+      }-${start.getMonth() < 10 ? `0${start.getDate()}` : start.getDate()}`;
       dataToPost["endDate"] = `${end.getFullYear()}-${
-        end.getMonth() + 1
-      }-${end.getDate()}`;
+        end.getMonth() < 10 ? `0${end.getMonth()}` : end.getMonth()
+      }-${end.getMonth() < 10 ? `0${end.getDate()}` : end.getDate()}`;
     }
     console.log(dataToPost);
     // Make query
