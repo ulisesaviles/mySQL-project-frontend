@@ -50,12 +50,17 @@ const App = () => {
     setResponseMsg("Cargando...");
     let dataToPost = {};
     // Get input values
+    let inputIsValid = true;
     if (
       queries[selectedQueryIndex].type === "departments" ||
       queries[selectedQueryIndex].type === "both"
     ) {
-      dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
-      dataToPost["departmentId"] = searchById ? inputValue : 0;
+      if (inputValue === "") {
+        inputIsValid = false;
+      } else {
+        dataToPost["departmentName"] = searchById ? "" : inputValue.trim();
+        dataToPost["departmentId"] = searchById ? inputValue : 0;
+      }
     }
     if (
       queries[selectedQueryIndex].type === "dates" ||
@@ -63,32 +68,42 @@ const App = () => {
     ) {
       let start = new Date(startDate);
       let end = new Date(endDate);
-      dataToPost["startDate"] = `${start.getFullYear()}-${
-        start.getMonth() + 1 < 10
-          ? `0${start.getMonth() + 1}`
-          : start.getMonth() + 1
-      }-${start.getDate() < 10 ? `0${start.getDate()}` : start.getDate()}`;
-      dataToPost["endDate"] = `${end.getFullYear()}-${
-        end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1
-      }-${end.getDate() < 10 ? `0${end.getDate()}` : end.getDate()}`;
+      if (start >= end) {
+        inputIsValid = false;
+      } else {
+        dataToPost["startDate"] = `${start.getFullYear()}-${
+          start.getMonth() + 1 < 10
+            ? `0${start.getMonth() + 1}`
+            : start.getMonth() + 1
+        }-${start.getDate() < 10 ? `0${start.getDate()}` : start.getDate()}`;
+        dataToPost["endDate"] = `${end.getFullYear()}-${
+          end.getMonth() + 1 < 10
+            ? `0${end.getMonth() + 1}`
+            : end.getMonth() + 1
+        }-${end.getDate() < 10 ? `0${end.getDate()}` : end.getDate()}`;
+      }
     }
     console.log(dataToPost);
     // Make query
-    axios({
-      method: "post",
-      url: `http://localhost:3000/api/query${selectedQueryIndex + 1}`,
-      data: {
-        data: dataToPost,
-      },
-    })
-      .then((response) => {
-        setQueryResponse(response.data.data);
-        setDoneQuery(true);
+    if (inputIsValid) {
+      axios({
+        method: "post",
+        url: `http://localhost:3000/api/query${selectedQueryIndex + 1}`,
+        data: {
+          data: dataToPost,
+        },
       })
-      .catch((e) => {
-        console.log(e);
-        setResponseMsg("Error de conexión");
-      });
+        .then((response) => {
+          setQueryResponse(response.data.data);
+          setDoneQuery(true);
+        })
+        .catch((e) => {
+          console.log(e);
+          setResponseMsg("Error de conexión");
+        });
+    } else {
+      setResponseMsg("La información ingresada no es válida");
+    }
   };
 
   const onlyuNumbers = (inputValue) => {
