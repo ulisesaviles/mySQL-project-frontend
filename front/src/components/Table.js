@@ -2,7 +2,7 @@
 import "../App.css";
 
 export const Table = (props) => {
-  return (
+  return props.headers ? (
     <div className="table">
       <div className="tableRow">
         {props.headers.map((header) => (
@@ -21,5 +21,5 @@ export const Table = (props) => {
         </div>
       ))}
     </div>
-  );
+  ) : null;
 };

@@ -76,13 +76,13 @@ const App = () => {
     // Make query
     axios({
       method: "post",
-      url: `localhost:3000/api/query${selectedQueryIndex + 1}`,
+      url: `http://localhost:3000/api/query${selectedQueryIndex + 1}`,
       data: {
         data: dataToPost,
       },
     })
       .then((response) => {
-        setQueryResponse(response.data);
+        setQueryResponse(response.data.data);
         setDoneQuery(true);
       })
       .catch((e) => {
